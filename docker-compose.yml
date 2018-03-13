@@ -1,0 +1,20 @@
+version: '2'
+services:
+  menus-db:
+    image: postgres:9.6
+    container_name: menus-db
+    environment:
+      POSTGRES_DB: menus_development
+      POSTGRES_USER: menus
+      POSTGRES_PASSWORD:
+    ports:
+      - 6512:5432/tcp
+  menus-db-test:
+    image: postgres:9.6
+    container_name: menus-db-test
+    environment:
+      POSTGRES_DB: menus_test
+      POSTGRES_USER: menus
+      POSTGRES_PASSWORD:
+    ports:
+      - 6513:5432/tcp
