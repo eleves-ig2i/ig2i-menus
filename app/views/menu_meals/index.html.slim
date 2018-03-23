@@ -1,0 +1,23 @@
+h1 Listing menu_meals
+
+table
+  thead
+    tr
+      th Meal
+      th Menu
+      th
+      th
+      th
+
+  tbody
+    - @menu_meals.each do |menu_meal|
+      tr
+        td = menu_meal.meal
+        td = menu_meal.menu
+        td = link_to 'Show', menu_meal
+        td = link_to 'Edit', edit_menu_meal_path(menu_meal)
+        td = link_to 'Destroy', menu_meal, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Meal menu', new_menu_meal_path

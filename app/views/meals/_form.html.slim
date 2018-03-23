@@ -1,0 +1,16 @@
+= simple_form_for @meal do |f|
+  - if @meal.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@meal.errors.count, "error")} prohibited this meal from being saved:"
+      ul
+        - @meal.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :ingredients
+    = f.input :ingredients, as: :array, label: false
+  button.add-ingredient-button type='button' Add additional ingredient
+  .actions = f.submit

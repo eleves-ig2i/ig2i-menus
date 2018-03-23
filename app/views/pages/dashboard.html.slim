@@ -1,0 +1,29 @@
+- if @menus.size > 0
+  - menu = @menus.shift
+  section.hero.is-info.is-medium
+    .hero-body
+      .container
+        h1.title = menu.name
+        h2.subtitle 
+          | Le&nbsp;
+          = menu.date.strftime('%m/%d/%Y')
+        ul
+          - menu.meals.each do |meal|
+            li = meal.name
+        = link_to "S'inscrire", root_path, class: 'button is-large is-outlined is-info is-inverted'
+  .container
+    section.section
+      h3.title.is-3 Autres menus
+      .columns
+        - @menus.each_with_index do |menu, idx|
+          .column.is-one-quarter
+            .card
+              header.card-header
+                p.card-header-title = menu.name
+              .card-content
+                .content
+                  ul
+                    - menu.meals.each do |meal|
+                      li = meal.name
+              footer.card-footer
+                = link_to "S'inscrire", root_path, class: 'card-footer-item'

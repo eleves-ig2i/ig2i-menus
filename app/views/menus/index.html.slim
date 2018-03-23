@@ -1,0 +1,23 @@
+.container
+  section.section
+    .columns
+      .column
+        h3.title.is-3 Mes menus
+      .column
+        = link_to 'New Menu', new_menu_path, class: 'button is-pulled-right'
+    - @menus.in_groups_of(4) do |menus|
+      .columns
+        - menus.each do |menu|
+          .column
+            .card
+              header.header
+                p.card-header-title = menu.name
+              .card-content
+                .content
+                  ul
+                    - menu.meals.each do |meal|
+                      li = meal.name
+              footer.card-footer
+                = link_to 'Show', menu, class: "card-footer-item"
+                = link_to 'Edit', edit_menu_path(menu), class: "card-footer-item"
+                = link_to 'Destroy', menu, data: { confirm: 'Are you sure?' }, method: :delete, class: "card-footer-item"

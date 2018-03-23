@@ -1,0 +1,27 @@
+doctype html
+html.has-navbar-fixed-top
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title MenusIg2i
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    link rel="manifest" href="/manifest.json"
+  body
+    .navbar.is-info.is-fixed-top
+      .container
+        .navbar-menu
+          .navbar-start
+          .navbar-end
+            - if student_signed_in?
+              = link_to 'Mes menus', menus_path, class: 'navbar-item'
+              = link_to 'Mes plats', meals_path, class: 'navbar-item'
+              = link_to 'Logout', destroy_student_session_path, method: :delete, class: 'navbar-item'
+            - else
+              = link_to 'Login', new_student_session_path, class: 'navbar-item'
+    - if notice
+      .notification.is-success = notice
+    - if alert
+      .notification.is-danger = alert
+    = yield
